@@ -9,6 +9,62 @@ any funny idea :P
 
 just do as usual `npm i` after cloning the repo
 
+# queries to test
+Query
+
+`{
+  products {
+    description
+  }
+  productsByPrice(min: 10, max: 20) {
+    description
+    price
+  }
+  product(id: "blueshoe") {
+    description
+    reviews {
+      comment
+    }
+  }
+  orders {
+    subtotal
+    items {
+      quantity
+      product {
+        name
+        description
+        price
+        reviews {
+          rating
+          comment
+        }
+      }
+    }
+  }
+}`
+
+Mutations
+
+`mutation {
+  addNewProduct(id: "greenjacket", name: "Green Jacket", description: "jacket is green leather made", price: 80.99) {
+    id
+    name
+    price
+    reviews {
+      rating
+      comment
+    }
+  }
+  shoereview: addNewProductReview(product_id: "redshoe", rating: 5, comment: "best shoe for rough usage") {
+    rating
+    comment
+  }
+  jacketreview: addNewProductReview(product_id: "greenjacket", rating: 5, comment: "best premium jacket feeling") {
+    rating
+    comment
+  }
+}`
+
 # notes
 
 1. I have only followed ESM methods to implement this as like other projects
